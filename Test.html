@@ -24,22 +24,40 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
-            var subjects = {
-                't': ["Java", "Dotnet"],
-                'd': ["Angular", "React"]
-            };
 
+        var tSubject = ["Java ", "Dotnet " ,"C++"];
+        var dSubject = ["Angular ", "React" , "Express JS"];
+
+
+        $(document).ready(function () {
             $('input[type=radio][name=emp]').change(function () {
                 var lstSubjects = $('#lstSubject');
-                var selectedValue = $(this).val();
+                if (this.value == "t") {
+                    console.log("tester");
+                    lstSubjects.empty();
+                    for (var i = 0; i < tSubject.length; i++) {
+                        lstSubjects.append($('<option></option>').val(tSubject[i]).html(tSubject[i]));
+                        console.log("tester for loop..")
+                    }
 
-                lstSubjects.empty();
-                subjects[selectedValue].forEach(function (subject) {
-                    lstSubjects.append($('<option></option>').val(subject).html(subject));
-                });
+                }
+                else if (this.value == "d") {
+                    console.log("developer");
+                    lstSubjects.empty();
+                    for (var i = 0; i < dSubject.length; i++) {
+                        lstSubjects.append($('<option></option>').val(dSubject[i]).html(dSubject[i]));
+                        console.log("developer for loop..")
+                    }
+
+                }
+
             });
+
+
         });
+
+
     </script>
+
 </body>
 </html>

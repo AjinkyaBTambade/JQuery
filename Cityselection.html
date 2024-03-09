@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country and City Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+
+            background-image: url('https://source.unsplash.com/1920x1080/?nature,earth');
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #btnInsert {
+            margin-top: 10px;
+        }
+
+        #pResult {
+            margin-top: 10px;
+        }
+
+        select.form-select {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #000;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form>
+                    <div class="form-group">
+                        <label for="ddcountries">Select Country:</label>
+                        <select class="form-select" id="ddcountries">
+                            <option value="India">India</option>
+                            <option value="USA">USA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddCities">Select City:</label>
+                        <select class="form-select" id="ddCities">
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="btnInsert">Choose City</button>
+                </form>
+                <div>
+                    <p id="pResult">Selected City will appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var cityIndia = ["Mumbai", "Chennai", "Pune", "Delhi", "Nagpur", "Hyderabad", "Satara", "Kolkata", "Jaipur"];
+            var cityUSA = ["Chicago", "Boston", "New Jersey", "San Francisco", "Los Angeles", "Dallas", "Seattle", "Miami"];
+
+            // Event listener for country selection
+            $("#ddcountries").change(function () {
+                var value = $(this).val();
+                var ctrlDropDownListBox = $('#ddCities');
+                ctrlDropDownListBox.empty(); // Clear the previous options
+                if (value == "USA") {
+                    $("#pResult").text("America");
+                    populateDropdown(cityUSA);
+                } else if (value == "India") {
+                    $("#pResult").text("Bharat");
+                    populateDropdown(cityIndia);
+                }
+            });
+
+            // Function to populate city dropdown
+            function populateDropdown(cities) {
+                var ctrlDropDownListBox = $('#ddCities');
+                for (var i = 0; i < cities.length; i++) {
+                    ctrlDropDownListBox.append($('<option></option>').val(cities[i]).html(cities[i]));
+                }
+            }
+
+            // Event listener for button click
+            $("#btnInsert").click(function () {
+                var selectedCity = $("#ddCities").val();
+                $("#pResult").text("Selected City: " + selectedCity);
+            });
+        });
+    </script>
+</body>
+
+</html>
